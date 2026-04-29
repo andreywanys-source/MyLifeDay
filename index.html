@@ -379,12 +379,20 @@
             document.getElementById('hint-sleep').innerText = "Tente dormir 8 horas para equilibrar os hormônios."; 
         }
 
-        window.onload = () => {
-            document.getElementById('user-age').value = state.age;
-            document.getElementById('diary-area').value = state.diaryEntry;
-            document.getElementById('streak-count').innerText = state.streak;
-            applyTheme(); renderTasks(); renderHabits(); renderIdeas(); updateLevel(); renderHealth();
-        };
-    </script>
+          window.onload = () => {
+    // Registro do Service Worker para permitir a instalação
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log("Service Worker registrado!"))
+        .catch(err => console.log("Erro no SW:", err));
+    }
+
+    document.getElementById('user-ag');
+    document.getElementById('diary-a');
+    document.getElementById('streak-');
+    applyTheme(); 
+    renderTasks();
+  };
+</script>
 </body>
 </html>
