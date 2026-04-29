@@ -1,26 +1,29 @@
-const CACHE_NAME = 'nexus-v4';
-const assets = [
+const CACHE_NAME = 'nexus-cache-v1';
+const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './1777394363882.png'
 ];
 
-// Instalação: Salva os arquivos essenciais no cache
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(assets);
-    })
+// Instalando o Service Worker e guardando arquivos no cache
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
-// Intercepta os pedidos: Tenta o cache, se não tiver, vai na rede
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
-  );
+// Ativando e limpando caches antigos
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
 });
 
+// Respondendo mesmo quando estiver offline
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
