@@ -1,0 +1,17 @@
+{
+  "short_name": "My Life",
+  "name": "My Life: Seu ciclo, seu equilíbrio",
+  "icons": [
+    {
+      "src": "1777394363882.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#fff1f2",
+  "display": "standalone",
+  "scope": "./",
+  "theme_color": "#fb7185"
+}
